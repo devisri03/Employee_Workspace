@@ -2,12 +2,14 @@ package com.ls.EmployeeDetailsApplication.services;
 
 import com.ls.EmployeeDetailsApplication.entities.Employee;
 import com.ls.EmployeeDetailsApplication.enums.EMessage;
+import com.ls.EmployeeDetailsApplication.integrations.IDepartment;
 import com.ls.EmployeeDetailsApplication.payloads.EmployeeDto;
 import com.ls.EmployeeDetailsApplication.repos.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +18,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository repository;
     private ModelMapper mapper;
+
+    @Autowired
+    private IDepartment department;
 
     @Autowired
     public EmployeeServiceImpl(EmployeeRepository repository, ModelMapper mapper) {
@@ -27,19 +32,29 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
         Employee employee = mapToEntity(employeeDto);
         Employee savedEmp = repository.save(employee);
-        return mapToDto(savedEmp);
+        EmployeeDto employeeDtos = new EmployeeDto(savedEmp);
+        employeeDtos.setDepartments(department.fetchDepartmentById(savedEmp.getId()));
+        return employeeDtos;
     }
 
     @Override
     public List<EmployeeDto> getAllEmployeeDetails() {
         List<Employee> employees = repository.findAll();
-        return employees.stream().map(e->mapToDto(e)).collect(Collectors.toList());
+        List<EmployeeDto> employeeDtos = new ArrayList<>();
+        for(Employee employee:employees){
+            EmployeeDto employeeDto = new EmployeeDto(employee);
+            employeeDto.setDepartments(department.fetchDepartmentById(employee.getId()));
+            employeeDtos.add(employeeDto);
+        }
+        return employeeDtos;
     }
 
     @Override
     public EmployeeDto getEmployeeById(Long id) throws RuntimeException {
         Employee employee = repository.findById(id).orElseThrow(() -> new RuntimeException(String.valueOf(EMessage.ID_NOT_FOUND)));
-        return mapToDto(employee);
+        EmployeeDto employeeDto = new EmployeeDto(employee);
+        employeeDto.setDepartments(department.fetchDepartmentById(employee.getId()));
+        return employeeDto;
     }
 
     @Override
