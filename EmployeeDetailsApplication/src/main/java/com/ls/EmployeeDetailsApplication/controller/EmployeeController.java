@@ -41,7 +41,7 @@ public class EmployeeController {
         return new ResponseEntity<>(String.valueOf(EMessage.EMPLOYEE_DELETED_SUCCESSFULLY),HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/employees/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/employee/{id}",method = RequestMethod.GET)
     public EmployeeDto fetchEmployeesById(@PathVariable Long id) throws RuntimeException{
         return service.getEmployeeById(id);
     }
