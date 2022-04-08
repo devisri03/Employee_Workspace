@@ -8,16 +8,22 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EmployeeEurekaServer" />
+        <module name="EmployeeDepartmentApplication" />
+        <module name="EmployeeAddressApplication" />
         <module name="EmployeeDetailsApplication" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="EmployeeAddressApplication" target="11" />
+      <module name="EmployeeDepartmentApplication" target="11" />
       <module name="EmployeeDetailsApplication" target="11" />
       <module name="EmployeeEurekaServer" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="EmployeeAddressApplication" options="-parameters" />
+      <module name="EmployeeDepartmentApplication" options="-parameters" />
       <module name="EmployeeDetailsApplication" options="-parameters" />
       <module name="EmployeeEurekaServer" options="-parameters" />
     </option>

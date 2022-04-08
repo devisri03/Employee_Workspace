@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Employee Workspace.iml" filepath="$PROJECT_DIR$/Employee Workspace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EmployeeAddressApplication/EmployeeAddressApplication.iml" filepath="$PROJECT_DIR$/EmployeeAddressApplication/EmployeeAddressApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EmployeeDepartmentApplication/EmployeeDepartmentApplication.iml" filepath="$PROJECT_DIR$/EmployeeDepartmentApplication/EmployeeDepartmentApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/EmployeeDetailsApplication/EmployeeDetailsApplication.iml" filepath="$PROJECT_DIR$/EmployeeDetailsApplication/EmployeeDetailsApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/EmployeeEurekaServer/EmployeeEurekaServer.iml" filepath="$PROJECT_DIR$/EmployeeEurekaServer/EmployeeEurekaServer.iml" />
     </modules>

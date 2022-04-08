@@ -5,6 +5,8 @@
       <list>
         <option value="$PROJECT_DIR$/EmployeeEurekaServer/pom.xml" />
         <option value="$PROJECT_DIR$/EmployeeDetailsApplication/pom.xml" />
+        <option value="$PROJECT_DIR$/EmployeeAddressApplication/pom.xml" />
+        <option value="$PROJECT_DIR$/EmployeeDepartmentApplication/pom.xml" />
       </list>
     </option>
   </component>
