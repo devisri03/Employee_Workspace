@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Employee Workspace.iml" filepath="$PROJECT_DIR$/Employee Workspace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EmployeeDetailsApplication/EmployeeDetailsApplication.iml" filepath="$PROJECT_DIR$/EmployeeDetailsApplication/EmployeeDetailsApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EmployeeEurekaServer/EmployeeEurekaServer.iml" filepath="$PROJECT_DIR$/EmployeeEurekaServer/EmployeeEurekaServer.iml" />
+    </modules>
+  </component>
+</project>
