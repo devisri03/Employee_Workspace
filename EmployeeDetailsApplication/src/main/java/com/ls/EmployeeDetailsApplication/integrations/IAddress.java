@@ -1,5 +1,4 @@
-/*
-package com.ls.EmployeeDepartmentApplication.integrations;
+package com.ls.EmployeeDetailsApplication.integrations;
 
 import com.ls.EmployeeAddressApplication.payloads.AddressDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -12,4 +11,3 @@ public interface IAddress {
     @RequestMapping(value = "/address/{id}",method = RequestMethod.GET)
     AddressDto fetchAddressById(@PathVariable Long id) throws RuntimeException;
 }
-*/

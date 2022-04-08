@@ -2,6 +2,7 @@ package com.ls.EmployeeDetailsApplication.services;
 
 import com.ls.EmployeeDetailsApplication.entities.Employee;
 import com.ls.EmployeeDetailsApplication.enums.EMessage;
+import com.ls.EmployeeDetailsApplication.integrations.IAddress;
 import com.ls.EmployeeDetailsApplication.integrations.IDepartment;
 import com.ls.EmployeeDetailsApplication.payloads.EmployeeDto;
 import com.ls.EmployeeDetailsApplication.repos.EmployeeRepository;
@@ -23,6 +24,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     private IDepartment department;
 
     @Autowired
+    private IAddress address;
+
+    @Autowired
     public EmployeeServiceImpl(EmployeeRepository repository, ModelMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
@@ -33,7 +37,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = mapToEntity(employeeDto);
         Employee savedEmp = repository.save(employee);
         EmployeeDto employeeDtos = new EmployeeDto(savedEmp);
-        employeeDtos.setDepartments(department.fetchDepartmentById(savedEmp.getId()));
+        employeeDtos.setDepartment(department.fetchDepartmentById(savedEmp.getId()));
+        employeeDtos.setAddress(address.fetchAddressById(savedEmp.getId()));
         return employeeDtos;
     }
 
@@ -43,7 +48,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<EmployeeDto> employeeDtos = new ArrayList<>();
         for(Employee employee:employees){
             EmployeeDto employeeDto = new EmployeeDto(employee);
-            employeeDto.setDepartments(department.fetchDepartmentById(employee.getId()));
+            employeeDto.setDepartment(department.fetchDepartmentById(employee.getId()));
+            employeeDto.setAddress(address.fetchAddressById(employee.getId()));
             employeeDtos.add(employeeDto);
         }
         return employeeDtos;
@@ -53,7 +59,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDto getEmployeeById(Long id) throws RuntimeException {
         Employee employee = repository.findById(id).orElseThrow(() -> new RuntimeException(String.valueOf(EMessage.ID_NOT_FOUND)));
         EmployeeDto employeeDto = new EmployeeDto(employee);
-        employeeDto.setDepartments(department.fetchDepartmentById(employee.getId()));
+        employeeDto.setDepartment(department.fetchDepartmentById(employee.getId()));
+        employeeDto.setAddress(address.fetchAddressById(employee.getId()));
         return employeeDto;
     }
 

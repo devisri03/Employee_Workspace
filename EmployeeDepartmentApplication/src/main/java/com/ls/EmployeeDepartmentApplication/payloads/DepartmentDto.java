@@ -14,11 +14,9 @@ public class DepartmentDto {
     private String name;
     private String description;
 
-    public DepartmentDto(Department department) {
+    /*public DepartmentDto(Department department) {
         this.id = department.getId();
         this.name = department.getName();
         this.description = department.getDescription();
-    }
-
-    private AddressDto address;
+    }*/
 }

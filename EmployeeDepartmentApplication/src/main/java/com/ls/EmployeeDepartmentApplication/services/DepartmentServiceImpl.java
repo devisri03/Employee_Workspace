@@ -2,7 +2,6 @@ package com.ls.EmployeeDepartmentApplication.services;
 
 import com.ls.EmployeeDepartmentApplication.entities.Department;
 import com.ls.EmployeeDepartmentApplication.enums.EMessage;
-import com.ls.EmployeeDepartmentApplication.integrations.IAddress;
 import com.ls.EmployeeDepartmentApplication.payloads.DepartmentDto;
 import com.ls.EmployeeDepartmentApplication.repos.DepartmentRepository;
 import org.modelmapper.ModelMapper;
@@ -20,9 +19,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     private ModelMapper mapper;
 
     @Autowired
-    private IAddress address;
-
-    @Autowired
     public DepartmentServiceImpl(DepartmentRepository repository, ModelMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
@@ -32,29 +28,19 @@ public class DepartmentServiceImpl implements DepartmentService {
     public DepartmentDto createDepartment(DepartmentDto departmentDto) {
         Department department = mapToEntity(departmentDto);
         Department savedDep = repository.save(department);
-        DepartmentDto dto = new DepartmentDto(savedDep);
-        dto.setAddress(address.fetchAddressById(savedDep.getId()));
-        return dto;
+        return mapToDto(savedDep);
     }
 
     @Override
     public List<DepartmentDto> getAllDepartments() {
         List<Department> departments = repository.findAll();
-        List<DepartmentDto> list = new ArrayList<>();
-        for (Department department:departments){
-            DepartmentDto departmentDto = new DepartmentDto(department);
-            departmentDto.setAddress(address.fetchAddressById(department.getId()));
-            list.add(departmentDto);
-        }
-        return list;
+        return departments.stream().map(department -> mapToDto(department)).collect(Collectors.toList());
     }
 
     @Override
     public DepartmentDto getDepartmentById(Long id) throws RuntimeException {
         Department department = repository.findById(id).orElseThrow(() -> new RuntimeException(String.valueOf(EMessage.ID_NOT_FOUND)));
-        DepartmentDto departmentDto = new DepartmentDto(department);
-        departmentDto.setAddress(address.fetchAddressById(department.getId()));
-        return departmentDto;
+        return mapToDto(department);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.ls.EmployeeDetailsApplication.payloads;
 
+import com.ls.EmployeeAddressApplication.payloads.AddressDto;
 import com.ls.EmployeeDepartmentApplication.payloads.DepartmentDto;
 import com.ls.EmployeeDetailsApplication.entities.Employee;
 import lombok.AllArgsConstructor;
@@ -26,5 +27,6 @@ public class EmployeeDto {
         this.email = employee.getEmail();
     }
 
-    private DepartmentDto departments;
+    private DepartmentDto department;
+    private AddressDto address;
 }
